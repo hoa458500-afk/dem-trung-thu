@@ -35,13 +35,13 @@ app.innerHTML=`
         ${cakeWishes.map((wish,i)=>`<div class="cake-gift"><button class="mooncake" type="button" data-message="${i}" aria-label="Mở lời chúc từ bánh Trung Thu ${i+1}" aria-expanded="false" aria-controls="cake-wish-${i}"><span class="mooncake-art" aria-hidden="true">${window.Mooncakes.art(i)}</span>${window.Mooncakes.flourish(i)}</button><div class="wish-banner" id="cake-wish-${i}" aria-hidden="true"><p><span class="visually-hidden">${wish}</span>${wish.split(' ').map(word=>`<span aria-hidden="true">${word}</span>`).join('')}</p></div></div>`).join('')}
       </div>
       <p class="mooncake-hint" id="cake-hint">Nhấn vào 3 chiếc bánh bên trên</p>
-      <img class="family-illustration" src="./assets/gift3-rustic-family-v13.webp" alt="Bố mẹ và bốn người con gái ngồi trên sáu chiếc ghế xung quanh bàn tròn, cùng đón Trung Thu trong ngôi nhà quê mộc mạc" decoding="async">
+      <img class="family-illustration" src="./gift3-rustic-family-v13.webp" alt="Bố mẹ và bốn người con gái ngồi trên sáu chiếc ghế xung quanh bàn tròn, cùng đón Trung Thu trong ngôi nhà quê mộc mạc" decoding="async">
     </div>
     <button class="next-prompt finale-entry" type="button" data-next="4" hidden>Ngắm trăng một chút <span aria-hidden="true">☾</span></button><div class="progress"><i></i><i></i><i class="on"></i></div>
   </section>
   <section class="scene moon-finale" id="scene4" aria-hidden="true" aria-label="Ngắm trăng dưới hiên nhà" tabindex="-1" inert>
     <div class="moon-portrait">
-      <img class="finale-art" src="./assets/moon-porch-star-v19.webp" alt="Hiên nhà gỗ nhìn ra đồng lúa dưới trăng tròn, một chiếc lồng đèn ngôi sao nằm trên sàn hiên" decoding="async">
+      <img class="finale-art" src="./moon-porch-star-v19.webp" alt="Hiên nhà gỗ nhìn ra đồng lúa dưới trăng tròn, một chiếc lồng đèn ngôi sao nằm trên sàn hiên" decoding="async">
       <div class="finale-shade" aria-hidden="true"></div>
       <div class="finale-lantern" aria-hidden="true"></div>
       <div class="finale-stars" aria-hidden="true">${Array.from({length:10},(_,i)=>`<i style="--x:${12+(i*17)%77}%;--y:${9+(i*7)%34}%;--delay:-${i*.7}s"></i>`).join('')}</div>
@@ -85,7 +85,7 @@ const fireCanvas=document.querySelector('.fireworks-canvas'),fireCtx=fireCanvas.
 const fireScene=document.querySelector('#scene2'),fireworkMessage=document.querySelector('.fireworks-message');
 const fireworkGreeting=window.FireworkEffects.createGreeting(reduced);
 const lanternCanvas=document.querySelector('.lantern-flight'),lanternCtx=lanternCanvas.getContext('2d',{alpha:true,desynchronized:true});
-const lanternSheet=new Image();lanternSheet.decoding='async';lanternSheet.src='./assets/flying-lanterns-v9.webp';
+const lanternSheet=new Image();lanternSheet.decoding='async';lanternSheet.src='./flying-lanterns-v9.webp';
 lanternSheet.decode?.().catch(()=>{});
 let W=0,H=0,dpr=1,rockets=[],sparks=[],flashes=[],delayed=[];
 let lanterns=[],lanternQueue=[],lanternHasFrame=false,meteors=[],nextMeteorAt=0;
@@ -311,7 +311,7 @@ addEventListener('keydown',e=>{
 });
 
 function playTone(freq,duration=.3,volume=.045){if(!musicEnabled||!audioCtx||audioCtx.state!=='running'||!effectGain)return;const now=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.setValueAtTime(freq,now);o.frequency.exponentialRampToValueAtTime(freq*.998,now+duration);g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(volume*.55,now+.025);g.gain.exponentialRampToValueAtTime(.0001,now+duration);o.connect(g).connect(effectGain);o.start(now);o.stop(now+duration+.02)}
-const backgroundMusic=new Audio('./assets/dem-trang-doan-vien-v16.mp3');
+const backgroundMusic=new Audio('./dem-trang-doan-vien-v16.mp3');
 backgroundMusic.loop=true;backgroundMusic.preload='auto';backgroundMusic.autoplay=true;backgroundMusic.volume=.55;
 function applyMusicMood(smooth=true){
   const volume=current===4?.34:.55;
